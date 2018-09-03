@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.jsa.feiravirtual.JWTUtil;
 import br.com.jsa.feiravirtual.model.Usuario;
+import br.com.jsa.feiravirtual.model.UsuarioLogado;
 import br.com.jsa.feiravirtual.service.UsuarioService;
 
 @RestController
@@ -41,12 +43,28 @@ public class UsuarioController implements Serializable {
 	public Optional<Usuario> getUsuario(@PathVariable("id") String idUsuario) {
 		return usuarioService.getUsuario(idUsuario);
 	}
-
+	
 	@GetMapping(value = "/", produces = MediaType.APPLICATION_JSON)
 	public List<Usuario> usuarios() {
 		return usuarioService.usuarios();
 	}
 
+	@PostMapping(value = "/login", produces = MediaType.APPLICATION_JSON)
+	public Response login(@RequestBody Usuario usuario) {
+		
+		Usuario user = usuarioService.login(usuario);
+		String token = JWTUtil.create(usuario.getEmail());
+		
+		if (user != null) {
+			UsuarioLogado me = new UsuarioLogado();
+			me.setEmail(usuario.getEmail());
+			me.setToken(token);
+			return Response.ok().entity(me).build();
+		}
+		
+		return Response.status(Response.Status.UNAUTHORIZED).build();
+	}
+	
 	@DeleteMapping(value = "/{id}")
 	public Response remover(@PathVariable("id") String idUsuario) {
 		usuarioService.remover(idUsuario);

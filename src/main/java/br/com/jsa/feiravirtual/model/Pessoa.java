@@ -3,6 +3,7 @@ package br.com.jsa.feiravirtual.model;
 import java.io.Serializable;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Version;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -17,7 +18,9 @@ public class Pessoa implements Serializable {
 	private String nome;
 	@DBRef
 	private Usuario usuario;
-
+	@Version
+	private Long versao;
+	
 	public String getIdPessoa() {
 		return idPessoa;
 	}

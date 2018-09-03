@@ -20,8 +20,6 @@ public class Usuario implements Serializable {
 	private String email;
 	private String senha;
 	@DBRef
-	private Pessoa pessoa;
-	@DBRef
 	private List<Permissao> permissao = new ArrayList<Permissao>();
 	@Version
 	private Long versao;
@@ -60,14 +58,6 @@ public class Usuario implements Serializable {
 
 		}
 
-	}
-
-	public Pessoa getPessoa() {
-		return pessoa;
-	}
-
-	public void setPessoa(Pessoa pessoa) {
-		this.pessoa = pessoa;
 	}
 
 	public List<Permissao> getPermissao() {
