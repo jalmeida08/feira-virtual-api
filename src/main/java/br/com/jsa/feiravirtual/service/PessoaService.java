@@ -30,4 +30,18 @@ public class PessoaService {
 	public void remover(String idPessoa) {
 		pessoaRepository.deleteById(idPessoa);
 	}
+	
+	public Pessoa buscarPessoaPorIdUsuario(String idUsuario) {
+		return pessoaRepository.findByUsuario(idUsuario);
+	}
+
+	public void atualziarPessoaVendedir(Pessoa pessoa) {
+		Pessoa p = pessoaRepository.findByUsuario(pessoa.getUsuario().getIdUsuario());
+		p.setNomeFantasia(pessoa.getNomeFantasia());
+		p.setNumeroCnpj(pessoa.getNumeroCnpj());
+		p.setNumeroCpf(pessoa.getNumeroCpf());
+		p.setEndereco(pessoa.getEndereco());
+		pessoaRepository.save(p);
+	}
+	
 }

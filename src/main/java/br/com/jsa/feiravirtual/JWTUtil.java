@@ -10,7 +10,7 @@ public class JWTUtil {
 	private static String key = "SECRET_TOKN";
 	
 	public static final String TOKEN_HEADER = "Authentication";
-	
+
 	public static String create(String subject) {
 		return Jwts.builder()
 				.setSubject(subject)

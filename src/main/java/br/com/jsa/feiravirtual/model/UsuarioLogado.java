@@ -5,9 +5,17 @@ import java.io.Serializable;
 public class UsuarioLogado implements Serializable {
 
 	private static final long serialVersionUID = 849706406476904157L;
-
+	private String idUsuario;
 	private String email;
 	private String token;
+
+	public String getIdUsuario() {
+		return idUsuario;
+	}
+
+	public void setIdUsuario(String idUsuario) {
+		this.idUsuario = idUsuario;
+	}
 
 	public String getEmail() {
 		return email;

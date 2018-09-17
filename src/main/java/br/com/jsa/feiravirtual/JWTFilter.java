@@ -14,8 +14,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
-import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.SignatureException;
 
 @Component
@@ -31,16 +29,27 @@ public class JWTFilter implements Filter {
 	        filterChain.doFilter(servletRequest, servletResponse);
 	        return;
 	    }
+//	    if(req.getRequestURI().startsWith("/pessoa/salvarP")){
+//	        filterChain.doFilter(servletRequest, servletResponse);
+//	        return;
+//	    }
+	    if(req.getRequestURI().startsWith("/usuario/salvar")){
+	        filterChain.doFilter(servletRequest, servletResponse);
+	        return;
+	    }
+	    if(req.getMethod().equals("OPTIONS")){
+	        filterChain.doFilter(servletRequest, servletResponse);
+	        return;
+	    }
 
 	    String token = req.getHeader(JWTUtil.TOKEN_HEADER);
-
 	    if(token == null || token.trim().isEmpty()){
 	        res.setStatus(401);
 	        return;
 	    }
 
 	    try {
-	        Jws<Claims> parser = JWTUtil.decode(token);
+	        /*Jws<Claims> parser = */JWTUtil.decode(token);
 	        filterChain.doFilter(servletRequest, servletResponse);
 	    } catch (SignatureException e) {
 	        res.setStatus(401);

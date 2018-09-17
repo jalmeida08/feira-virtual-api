@@ -1,6 +1,8 @@
 package br.com.jsa.feiravirtual.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Version;
@@ -15,12 +17,18 @@ public class Pessoa implements Serializable {
 	@Id
 	private String idPessoa;
 	private Long numeroCpf;
+	private Long numeroCnpj;
 	private String nome;
+	private String sobrenome;
+	private String nomeFantasia;
+	@DBRef
+	private List<Endereco> endereco = new ArrayList<Endereco>();
 	@DBRef
 	private Usuario usuario;
 	@Version
 	private Long versao;
-	
+
+
 	public String getIdPessoa() {
 		return idPessoa;
 	}
@@ -51,6 +59,46 @@ public class Pessoa implements Serializable {
 
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
+	}
+
+	public Long getNumeroCnpj() {
+		return numeroCnpj;
+	}
+
+	public void setNumeroCnpj(Long numeroCnpj) {
+		this.numeroCnpj = numeroCnpj;
+	}
+
+	public String getSobrenome() {
+		return sobrenome;
+	}
+
+	public void setSobrenome(String sobrenome) {
+		this.sobrenome = sobrenome;
+	}
+
+	public String getNomeFantasia() {
+		return nomeFantasia;
+	}
+
+	public void setNomeFantasia(String nomeFantasia) {
+		this.nomeFantasia = nomeFantasia;
+	}
+
+	public List<Endereco> getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(List<Endereco> endereco) {
+		this.endereco = endereco;
+	}
+
+	public Long getVersao() {
+		return versao;
+	}
+
+	public void setVersao(Long versao) {
+		this.versao = versao;
 	}
 
 }

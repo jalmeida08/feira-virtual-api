@@ -17,12 +17,23 @@ public class Usuario implements Serializable {
 
 	@Id
 	private String idUsuario;
+	private String usuario;
 	private String email;
 	private String senha;
 	@DBRef
 	private List<Permissao> permissao = new ArrayList<Permissao>();
 	@Version
 	private Long versao;
+//	@DBRef
+//	private Pessoa pessoa;
+
+//	public Pessoa getPessoa() {
+//		return pessoa;
+//	}
+//
+//	public void setPessoa(Pessoa pessoa) {
+//		this.pessoa = pessoa;
+//	}
 
 	public String getIdUsuario() {
 		return idUsuario;
@@ -74,6 +85,14 @@ public class Usuario implements Serializable {
 
 	public void setVersao(Long versao) {
 		this.versao = versao;
+	}
+
+	public String getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(String usuario) {
+		this.usuario = usuario;
 	}
 
 }

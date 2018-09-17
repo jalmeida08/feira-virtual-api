@@ -33,7 +33,7 @@ public class UsuarioController implements Serializable {
 	// return Response.ok().entity(me).build();
 	// return Response.status(Response.Status.UNAUTHORIZED).build();
 
-	@PostMapping(value = "/", consumes = MediaType.APPLICATION_JSON)
+	@PostMapping(value = "/salvar", consumes = MediaType.APPLICATION_JSON)
 	public Response salvar(@RequestBody Usuario usuario) {
 		usuarioService.salvar(usuario);
 		return Response.ok().entity(usuario).build();
@@ -43,7 +43,7 @@ public class UsuarioController implements Serializable {
 	public Optional<Usuario> getUsuario(@PathVariable("id") String idUsuario) {
 		return usuarioService.getUsuario(idUsuario);
 	}
-	
+
 	@GetMapping(value = "/", produces = MediaType.APPLICATION_JSON)
 	public List<Usuario> usuarios() {
 		return usuarioService.usuarios();
@@ -51,20 +51,21 @@ public class UsuarioController implements Serializable {
 
 	@PostMapping(value = "/login", produces = MediaType.APPLICATION_JSON)
 	public Response login(@RequestBody Usuario usuario) {
-		
+
 		Usuario user = usuarioService.login(usuario);
 		String token = JWTUtil.create(usuario.getEmail());
-		
+
 		if (user != null) {
 			UsuarioLogado me = new UsuarioLogado();
-			me.setEmail(usuario.getEmail());
+			me.setIdUsuario(user.getIdUsuario());
+			me.setEmail(user.getEmail());
 			me.setToken(token);
 			return Response.ok().entity(me).build();
 		}
-		
+
 		return Response.status(Response.Status.UNAUTHORIZED).build();
 	}
-	
+
 	@DeleteMapping(value = "/{id}")
 	public Response remover(@PathVariable("id") String idUsuario) {
 		usuarioService.remover(idUsuario);
