@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.jsa.feiravirtual.JWTUtil;
 import br.com.jsa.feiravirtual.model.Usuario;
 import br.com.jsa.feiravirtual.model.UsuarioLogado;
 import br.com.jsa.feiravirtual.service.UsuarioService;
@@ -52,18 +51,13 @@ public class UsuarioController implements Serializable {
 	@PostMapping(value = "/login", produces = MediaType.APPLICATION_JSON)
 	public Response login(@RequestBody Usuario usuario) {
 
-		Usuario user = usuarioService.login(usuario);
-		String token = JWTUtil.create(usuario.getEmail());
+		try {
 
-		if (user != null) {
-			UsuarioLogado me = new UsuarioLogado();
-			me.setIdUsuario(user.getIdUsuario());
-			me.setEmail(user.getEmail());
-			me.setToken(token);
-			return Response.ok().entity(me).build();
+			UsuarioLogado user = usuarioService.login(usuario);
+			return Response.ok().entity(user).build();
+		} catch (Exception e) {
+			return Response.status(Response.Status.UNAUTHORIZED).build();
 		}
-
-		return Response.status(Response.Status.UNAUTHORIZED).build();
 	}
 
 	@DeleteMapping(value = "/{id}")
@@ -71,4 +65,12 @@ public class UsuarioController implements Serializable {
 		usuarioService.remover(idUsuario);
 		return Response.ok().build();
 	}
+
+	@GetMapping(value = "/{idU}/{idA}")
+	public Response adicionarPermissao(@PathVariable("user") String idUsuario,
+			@PathVariable("acesso") String idPermissao) {
+		usuarioService.adicionarPermissao(idUsuario, idPermissao);
+		return Response.ok().build();
+	}
+
 }

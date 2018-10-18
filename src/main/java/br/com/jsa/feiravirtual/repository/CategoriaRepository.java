@@ -8,4 +8,5 @@ import br.com.jsa.feiravirtual.model.Categoria;
 @Repository
 public interface CategoriaRepository extends MongoRepository<Categoria, String>  {
 
+	public Categoria findByIdCategoria(String idCategoria);
 }

@@ -11,7 +11,7 @@ public class Permissao implements Serializable {
 	private static final long serialVersionUID = 7340831151958919629L;
 	@Id
 	private String idPermissao;
-	private String permissao;
+	private String nomePermissao;
 
 
 	public String getIdPermissao() {
@@ -22,12 +22,12 @@ public class Permissao implements Serializable {
 		this.idPermissao = idPermissao;
 	}
 
-	public String getPermissao() {
-		return permissao;
+	public String getNomePermissao() {
+		return nomePermissao;
 	}
 
-	public void setPermissao(String permissao) {
-		this.permissao = permissao;
+	public void setNomePermissao(String nomePermissao) {
+		this.nomePermissao = nomePermissao.toUpperCase();
 	}
 
 }

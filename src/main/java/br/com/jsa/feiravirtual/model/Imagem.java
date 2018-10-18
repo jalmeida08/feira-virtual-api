@@ -11,19 +11,19 @@ public class Imagem implements Serializable {
 
 	private static final long serialVersionUID = -7137403105780615963L;
 	@Id
-	private String idFoto;
+	private String idImagem;
 	private String nome;
 	private String extensao;
-	private Byte imagem;
+	private byte[] imagem;
 	@Version
 	private Long versao;
 
-	public String getIdFoto() {
-		return idFoto;
+	public String getIdImagem() {
+		return idImagem;
 	}
 
-	public void setIdFoto(String idFoto) {
-		this.idFoto = idFoto;
+	public void setIdImagem(String idImagem) {
+		this.idImagem = idImagem;
 	}
 
 	public String getNome() {
@@ -42,11 +42,11 @@ public class Imagem implements Serializable {
 		this.extensao = extensao;
 	}
 
-	public Byte getImagem() {
+	public byte[] getImagem() {
 		return imagem;
 	}
 
-	public void setImagem(Byte imagem) {
+	public void setImagem(byte[] imagem) {
 		this.imagem = imagem;
 	}
 

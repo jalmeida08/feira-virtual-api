@@ -7,5 +7,7 @@ import br.com.jsa.feiravirtual.model.Permissao;
 
 @Repository
 public interface PermissaoRepository extends MongoRepository<Permissao, String> {
+	
+	public Permissao findByNomePermissaoEquals(String nomePermissao);
 
 }

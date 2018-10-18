@@ -8,7 +8,8 @@ public class UsuarioLogado implements Serializable {
 	private String idUsuario;
 	private String email;
 	private String token;
-
+	private String permissoes;
+	
 	public String getIdUsuario() {
 		return idUsuario;
 	}
@@ -32,5 +33,14 @@ public class UsuarioLogado implements Serializable {
 	public void setToken(String token) {
 		this.token = token;
 	}
+
+	public String getPermissoes() {
+		return permissoes;
+	}
+
+	public void setPermissoes(String permissoes) {
+		this.permissoes = permissoes;
+	}
+
 
 }

@@ -41,7 +41,7 @@ public class Produto implements Serializable {
 	private String quantidadeAltoFalante;
 	private String potênciaMáximaAltoFalantes;
 	private String modoSom;
-	private String ripoCorrente;
+	private String tipoCorrente;
 	private String memóriaInterna;
 	private String memóriaRam;
 	private String operadora;
@@ -236,12 +236,12 @@ public class Produto implements Serializable {
 		this.modoSom = modoSom;
 	}
 
-	public String getRipoCorrente() {
-		return ripoCorrente;
+	public String getTipoCorrente() {
+		return tipoCorrente;
 	}
 
-	public void setRipoCorrente(String ripoCorrente) {
-		this.ripoCorrente = ripoCorrente;
+	public void setTipoCorrente(String tipoCorrente) {
+		this.tipoCorrente = tipoCorrente;
 	}
 
 	public String getMemóriaInterna() {
@@ -364,4 +364,12 @@ public class Produto implements Serializable {
 		this.tamanho = tamanho;
 	}
 
+	public List<Categoria> getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(List<Categoria> categoria) {
+		this.categoria = categoria;
+	}
+	
 }

@@ -20,7 +20,7 @@ public class Usuario implements Serializable {
 	private String usuario;
 	private String email;
 	private String senha;
-	@DBRef
+	@DBRef(lazy=true)
 	private List<Permissao> permissao = new ArrayList<Permissao>();
 	@Version
 	private Long versao;

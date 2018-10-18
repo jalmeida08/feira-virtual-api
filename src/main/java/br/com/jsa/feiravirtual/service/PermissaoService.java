@@ -15,15 +15,16 @@ public class PermissaoService {
 	@Autowired
 	private PermissaoRepository permissaoRepository;
 	
-	public void savar(Permissao permisao) {
-		permissaoRepository.save(permisao);
+	public void savar(Permissao permissao) {
+		permissao.setNomePermissao(permissao.getNomePermissao().toUpperCase());
+		permissaoRepository.save(permissao);
 	}
 	
 	public Optional<Permissao> getPermissao(String idPermissao){
 		return permissaoRepository.findById(idPermissao);
 	}
 
-	public List<Permissao> pessoas(){
+	public List<Permissao> permissoes(){
 		return permissaoRepository.findAll();
 	}
 	
